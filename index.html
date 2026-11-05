@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EEF1FF">
+<title>Naval Mohanraj | Cloud Computing Portfolio</title>
+<meta name="description" content="Naval Mohanraj, M.Sc IT (Cloud Computing) student focused on AWS and cloud migration. Projects, skills, and a secret Cloud Arcade.">
+<meta property="og:title" content="Naval Mohanraj | Cloud Computing Portfolio">
+<meta property="og:description" content="AWS-focused cloud student. Find the secret Cloud Arcade!">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕹️</text></svg>">
+<script>document.documentElement.classList.add("js")</script>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1FF; --card:#FFFFFF; --glass:rgba(255,255,255,.64); --line:rgba(255,255,255,.9);
+  --ink:#241B4B; --muted:#5E5688; --acc:#6C63FF;
+  --pink:#FF9EC4; --mint:#8FE8CB; --butter:#FFD98A; --lilac:#B9A6FF; --sky:#8CCBFF;
+  --shadow:0 18px 50px rgba(80,60,170,.18);
+  --head:'Sora','Trebuchet MS',sans-serif; --body:'Plus Jakarta Sans','Segoe UI',sans-serif;
+  --bgimg:radial-gradient(900px 600px at 8% -8%,#FFD3E8 0,transparent 60%),radial-gradient(800px 600px at 100% 0,#C4E4FF 0,transparent 55%),radial-gradient(900px 700px at 50% 110%,#DCCFFF 0,transparent 60%),linear-gradient(180deg,#F4F1FF,#EAF4FF);
+}
+body.arcade{
+  --bg:#12082B; --card:#1E1040; --glass:rgba(30,16,64,.78); --line:rgba(255,79,163,.45);
+  --ink:#F4F0FF; --muted:#B9A8F0; --acc:#FF4FA3;
+  --pink:#FF4FA3; --mint:#2CFFB0; --butter:#FFE94A; --lilac:#8B5CFF; --sky:#38D5FF;
+  --shadow:0 0 28px rgba(255,79,163,.3);
+  --head:'Press Start 2P','Courier New',monospace;
+  --bgimg:radial-gradient(800px 500px at 20% 0,#3a1470 0,transparent 60%),linear-gradient(180deg,#12082B,#0A0420);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.05rem;line-height:1.65;transition:color .4s}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:var(--bgimg),var(--bg);transition:opacity .4s}
+body.arcade::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px)}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0 0 .6em;letter-spacing:-.01em}
+body.arcade h1{font-size:clamp(1.3rem,5vw,2.4rem)} body.arcade h2{font-size:1.15rem} body.arcade h3{font-size:.8rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.glass{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow)}
+.glass{position:relative;transition:transform .25s ease,box-shadow .25s ease}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(130,110,255,.2),transparent 62%)}
+.glass:hover::after{opacity:1}
+.skill:hover,.stat:hover,.bring>div:hover,.b7:hover,.b5:hover,.cta:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(80,60,170,.26)}
+.pad{padding:26px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--pink),var(--lilac),var(--sky));z-index:70}
+#glow{position:fixed;left:-500px;top:-500px;width:460px;height:460px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(130,110,255,.22),transparent 65%);transform:translate(-50%,-50%);z-index:-1}
+@media (hover:none){#glow{display:none}}
+
+/* nav */
+nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;width:min(900px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px 8px 20px;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow)}
+.logo{font-family:var(--head);font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap}
+body.arcade .logo{font-size:.6rem}
+nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+nav a.l{display:inline-block;padding:7px 16px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.95rem;transition:background .2s,color .2s}
+nav a.l{position:relative}
+nav a.l::after{content:"";position:absolute;left:16px;right:16px;bottom:4px;height:2px;border-radius:2px;background:var(--acc);transform:scaleX(0);transition:transform .25s}
+nav a.l:hover::after{transform:scaleX(1)}
+nav a.l.act::after{display:none}
+nav a.l.act{background:var(--ink);color:var(--bg)}
+
+/* hero */
+.hero{position:relative;padding:130px 0 70px;overflow:hidden}
+.cl{position:absolute;font-size:5rem;opacity:.65;filter:blur(.5px);animation:drift 48s linear infinite;pointer-events:none}
+.cl:nth-child(1){top:90px;left:-10%}.cl:nth-child(2){top:230px;left:-30%;font-size:3.4rem;animation-duration:70s;animation-delay:-20s}.cl:nth-child(3){top:60px;left:-50%;font-size:4rem;animation-duration:90s;animation-delay:-45s}
+body.arcade .cl{display:none}
+@keyframes drift{to{transform:translateX(160vw)}}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;position:relative}
+.chip{display:inline-block;padding:6px 16px;border-radius:999px;font-weight:600;font-size:.92rem;background:var(--glass);border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:18px}
+.hero h1{font-size:clamp(2.7rem,8.4vw,5.6rem);letter-spacing:-.035em;line-height:1;margin-bottom:.25em}
+.grad{background:linear-gradient(100deg,#6C63FF,#FF6FA8 50%,#2BB7D6 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+body.arcade .grad{background:linear-gradient(100deg,#FF4FA3,#FFE94A,#2CFFB0);-webkit-background-clip:text;background-clip:text}
+@keyframes shine{to{background-position:200% 0}}
+.role{font-family:var(--head);font-size:clamp(1.05rem,2.6vw,1.5rem);font-weight:600;margin:0 0 14px}
+body.arcade .role{font-size:.8rem}
+.role b{color:var(--acc)}
+.caret{display:inline-block;width:3px;height:1.1em;background:var(--acc);vertical-align:-.15em;margin-left:3px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+#tagline{max-width:34em;color:var(--muted);font-size:1.1rem}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{position:relative;overflow:hidden;display:inline-block;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;border:0;background:linear-gradient(100deg,#6C63FF,#8E7CFF);color:#fff;cursor:pointer;font-family:inherit;font-size:1rem;box-shadow:0 10px 24px rgba(108,99,255,.35);transition:transform .18s ease-out,box-shadow .2s}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-130%)}
+.btn:hover{transform:translate(var(--tx,0px),calc(var(--ty,0px) - 3px));box-shadow:0 16px 30px rgba(108,99,255,.45)}
+.btn:hover::after{transform:translateX(130%);transition:transform .7s}
+.btn:active{transform:scale(.96)}
+.btn.alt{background:linear-gradient(100deg,var(--pink),var(--butter));color:#241B4B;box-shadow:0 10px 24px rgba(255,140,180,.35)}
+body.arcade .btn{background:var(--pink);color:#12082B}
+.hintpill{display:inline-flex;align-items:center;gap:8px;margin:26px 0 0;padding:8px 16px;border-radius:999px;border:2px dashed var(--acc);font-weight:600;font-size:.95rem;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px)}}
+
+/* orbit visual */
+.orbit{position:relative;width:min(360px,78vw);aspect-ratio:1;justify-self:center;--r:calc(min(360px,78vw)*.39)}
+.orbit::before{content:"";position:absolute;inset:8%;border:2px dashed rgba(108,99,255,.38);border-radius:50%}
+.ring{position:absolute;inset:0;animation:spin 34s linear infinite}
+.ring span{position:absolute;top:50%;left:50%;width:62px;height:62px;margin:-31px 0 0 -31px;transform:rotate(calc(var(--i)*72deg)) translateY(calc(var(--r)*-1)) rotate(calc(var(--i)*-72deg))}
+.ring span b{display:grid;place-items:center;width:100%;height:100%;border-radius:20px;background:var(--glass);border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--head);font-size:.8rem;animation:spinr 34s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes spinr{to{transform:rotate(-360deg)}}
+.core{position:absolute;inset:27%;border-radius:50%;background:linear-gradient(135deg,#FFB3D1,#B9A6FF 55%,#8CCBFF);display:grid;place-content:center;text-align:center;color:#241B4B;box-shadow:0 24px 60px rgba(108,99,255,.42);font-family:var(--head)}
+.core span{font-size:clamp(1.8rem,7vw,2.8rem);font-weight:800;line-height:1}
+.core small{font-size:.8rem;font-weight:600;margin-top:6px}
+
+/* sections */
+.sec{padding:72px 0}
+.sh{margin-bottom:30px}
+.sh h2{font-size:clamp(1.9rem,4.6vw,3rem);letter-spacing:-.03em;margin:0}
+.sub{margin:8px 0 14px;font-size:1.25rem}
+body.arcade .sub{font-size:.8rem}
+.mini{font-size:1rem;margin-bottom:.8em;color:var(--acc)}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.b7{grid-column:span 7}.b5{grid-column:span 5}.b12{grid-column:span 12}
+.bento p{margin:0 0 1em}.bento p:last-child{margin:0}
+.facts{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.facts li{padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.5);border:1px solid var(--line);font-weight:500}
+body.arcade .facts li{background:rgba(255,255,255,.06)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.stat{padding:18px 16px;text-align:center;font-weight:500;color:var(--muted)}
+.stat b{display:block;font-family:var(--head);font-size:2rem;line-height:1.1;margin-bottom:4px;background:linear-gradient(100deg,#6C63FF,#FF6FA8);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.arcade .stat b{font-size:1rem;background:none;color:var(--butter)}
+.bring{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.bring>div{padding:20px}
+.bring h3{font-size:1.05rem;margin-bottom:.4em}
+body.arcade .bring h3{font-size:.7rem}
+.bring p{margin:0;color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.skill{padding:20px}
+.skill .em{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;font-size:1.7rem;margin-bottom:12px;background:linear-gradient(135deg,var(--lilac),var(--sky))}
+.skill:nth-child(3n+2) .em{background:linear-gradient(135deg,var(--pink),var(--butter))}
+.skill:nth-child(3n) .em{background:linear-gradient(135deg,var(--mint),var(--sky))}
+.skill h3{font-size:1.02rem;margin-bottom:.7em}
+body.arcade .skill h3{font-size:.65rem}
+.bar{height:8px;border-radius:99px;background:rgba(120,110,190,.22);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--acc));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+html.js .skill:not(.in) .bar i{width:0!important}
+.now{display:flex;flex-wrap:wrap;gap:10px}
+.now span{padding:8px 18px;border-radius:999px;background:var(--glass);border:1px solid var(--line);font-weight:600;box-shadow:var(--shadow)}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.proj{position:relative;overflow:hidden;padding:30px 24px 22px;display:flex;flex-direction:column;gap:10px;transition:transform .18s ease-out,box-shadow .25s}
+.proj::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--c,var(--acc))}
+.proj:nth-child(4n+1){--c:var(--pink)}.proj:nth-child(4n+2){--c:var(--sky)}.proj:nth-child(4n+3){--c:var(--mint)}.proj:nth-child(4n){--c:var(--butter)}
+.proj:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-8px);box-shadow:0 30px 64px rgba(80,60,170,.3)}
+.proj h3{font-size:1.2rem;margin:0}
+body.arcade .proj h3{font-size:.75rem;line-height:1.5}
+.proj p{margin:0;color:var(--muted);font-size:1rem}
+.proj .go{font-weight:700;text-decoration:none;color:var(--acc)}
+.proj .go::after{content:" \2192";display:inline-block;transition:transform .2s}
+.proj .go:hover::after{transform:translateX(5px)}
+.proj .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tag{font-size:.8rem;font-weight:600;padding:3px 12px;border-radius:99px;background:rgba(108,99,255,.13);color:var(--ink)}
+.proj.secret{background:linear-gradient(135deg,rgba(255,217,138,.85),rgba(255,158,196,.7));color:#241B4B;border:2px dashed #241B4B}
+.proj.secret p{color:#3B2F5C}
+html.js .rv:not(.in){opacity:0}
+html.js .rv.in{animation:rise .75s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.cta{padding:44px 26px;text-align:center}
+.cta h2{font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:.3em}
+.cta .links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+footer{padding:40px 0 110px}
+footer small{display:block;text-align:center;color:var(--muted);margin-top:22px}
+
+/* polish */
+::selection{background:var(--acc);color:#fff}
+html{scrollbar-width:thin;scrollbar-color:var(--lilac) transparent}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:var(--lilac);border-radius:9px;border:2px solid transparent;background-clip:content-box}
+.sh h2::after{content:"";display:block;height:5px;width:56px;border-radius:9px;margin-top:12px;background:linear-gradient(90deg,var(--pink),var(--acc));transition:width .4s ease}
+.sh:hover h2::after{width:130px}
+.orbit:hover .ring,.orbit:hover .ring b{animation-play-state:paused}
+.ring span b{transition:transform .25s}.ring span b:hover{transform:scale(1.18)}
+.skill .em{transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.skill:hover .em{transform:rotate(-10deg) scale(1.15)}
+.skill:hover .bar i{filter:brightness(1.15) saturate(1.2)}
+.tag{transition:background .2s,color .2s,transform .2s}.tag:hover{background:var(--acc);color:#fff;transform:translateY(-2px)}
+.now span{transition:transform .2s,background .2s,color .2s}.now span:hover{transform:translateY(-4px);background:linear-gradient(100deg,var(--pink),var(--lilac));color:#241B4B}
+.facts li{transition:transform .2s,border-color .2s,background .2s}.facts li:hover{transform:translateX(8px);border-color:var(--acc);background:rgba(255,255,255,.8)}
+body.arcade .facts li:hover{background:rgba(255,255,255,.14)}
+.chip{transition:transform .2s}.chip:hover{transform:rotate(-2deg) scale(1.05)}
+.skip{position:absolute;left:-999px;top:10px;z-index:100;padding:10px 18px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;text-decoration:none}
+.skip:focus{left:12px}
+#totop{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);z-index:55;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--shadow);color:var(--ink);font-size:1.3rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#totop.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+#totop:hover{background:var(--acc);color:#fff}
+/* secret button hint */
+#start{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:3px solid var(--ink);background:var(--butter);color:#3B2F5C;font-family:'Press Start 2P',monospace;font-size:.62rem;cursor:pointer;box-shadow:4px 4px 0 var(--ink);animation:pulse 1.8s ease-in-out infinite}
+#start span.joy{font-size:1.4rem}
+body.arcade #start{background:var(--pink);color:#12082B;animation:none}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07) rotate(-1.5deg)}}
+
+/* arcade overlay */
+#arcade{position:fixed;inset:0;z-index:80;background:rgba(10,4,30,.86);display:none;align-items:center;justify-content:center;padding:14px;overflow:auto}
+#arcade.on{display:flex}
+.cab{width:min(720px,100%);background:#1E1040;color:#F4F0FF;border:4px solid #FF4FA3;border-radius:14px;box-shadow:0 0 30px #FF4FA3,inset 0 0 20px rgba(139,92,255,.5);padding:16px;font-family:'Press Start 2P',monospace}
+.cab .top{display:flex;justify-content:space-between;align-items:center;font-size:.6rem;gap:8px;margin-bottom:10px;color:#FFE94A}
+.cab button.x{font-family:inherit;font-size:.6rem;background:#FF4FA3;color:#12082B;border:0;padding:8px 10px;cursor:pointer}
+canvas{width:100%;height:auto;display:block;background:#0A0420;border:3px solid #38D5FF;touch-action:none;cursor:none}
+#reveal{margin:12px 0 0;font-size:.62rem;line-height:1.8;color:#2CFFB0;min-height:3.6em}
+#log{font-family:'Fredoka',sans-serif;font-size:.95rem;margin:8px 0 0;padding-left:18px;color:#F4F0FF;line-height:1.4;max-height:130px;overflow:auto}
+.hint{font-size:.5rem;color:#B9A8F0;margin-top:8px;line-height:1.6}
+
+.cab .top2{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:10px}
+.cab .top2 button[hidden]{display:none}
+.cab #lives{letter-spacing:2px;font-size:.8rem}
+.stage{position:relative}
+.panel{position:absolute;inset:0;background:rgba(10,4,32,.96);border:3px solid #38D5FF;padding:10px;overflow:auto;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;font-size:.58rem;text-align:center;line-height:1.7}
+.panel[hidden]{display:none}
+.panel h3{margin:0;color:#FFE94A;font-size:.8rem}
+.panel input{font-family:'Fredoka',sans-serif;font-size:1rem;padding:6px 10px;border:3px solid #38D5FF;background:#12082B;color:#fff;width:11em;text-align:center}
+.panel ol{font-family:'Fredoka',sans-serif;font-size:.95rem;text-align:left;margin:0;padding-left:26px;color:#fff;line-height:1.35}
+.panel svg{width:100%;max-height:230px}
+#lbmsg{color:#2CFFB0;min-height:1.2em}
+/* migrate it */
+#mig{position:fixed;left:18px;bottom:18px;z-index:60;display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:3px solid var(--ink);background:var(--mint);color:#3B2F5C;font-family:'Press Start 2P',monospace;font-size:.62rem;cursor:pointer;box-shadow:4px 4px 0 var(--ink);animation:pulse 1.8s ease-in-out infinite .6s}
+#mig .joy{font-size:1.4rem}
+#migrate{position:fixed;inset:0;z-index:85;background:rgba(40,25,80,.7);display:none;align-items:center;justify-content:center;padding:14px}
+#migrate.on{display:flex}
+.mbox{width:min(880px,100%);max-height:94vh;max-height:94dvh;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;overflow:auto;background:var(--card);color:var(--ink);border:3px solid var(--ink);box-shadow:var(--shadow);border-radius:22px;padding:18px 20px}
+.mbox h2{transform:none;font-size:1.6rem;margin-bottom:.3em}
+body.arcade .mbox h2{font-size:.9rem}
+.mhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mstat{display:flex;gap:14px;flex-wrap:wrap;font-weight:600;margin:6px 0 12px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mgrid h3{font-size:1rem;margin-bottom:.5em}
+.mcard{padding:10px 14px;border:3px solid var(--ink);border-radius:14px;background:var(--butter);color:#3B2F5C;font-weight:600;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.mcard.sel{outline:4px solid var(--pink);outline-offset:2px}
+.mcard.done{display:none}
+.mt{border:3px dashed var(--ink);border-radius:14px;padding:10px 14px;margin-bottom:10px;min-height:76px;background:var(--bg)}
+.mt b{display:block}
+.mt small{display:block;color:var(--muted);line-height:1.3}
+.mt .slot{font-weight:600;margin-top:4px;min-height:1.2em}
+.mt.hot{background:var(--sky);color:#3B2F5C;border-style:solid}
+.mt.hot small{color:#3B2F5C}
+.mt.ok{background:var(--mint);color:#3B2F5C;border-style:solid}
+.mt.ok small{color:#3B2F5C}
+.mt.no{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.mghost{position:fixed;z-index:300;pointer-events:none;opacity:.92;transform:rotate(3deg);box-shadow:5px 5px 0 var(--ink);width:210px}
+#migMsg{min-height:2.6em;margin:0 0 10px;font-weight:500;position:sticky;top:-18px;z-index:5;background:var(--card);padding:6px 0}
+#migWin{display:none;margin-top:10px;padding:14px;border:3px solid var(--ink);border-radius:16px;background:var(--butter);color:#3B2F5C}
+@media (max-width:640px){
+  .mbox{padding:12px}.mbox h2{font-size:1.25rem}
+  .mgrid{gap:8px}.mgrid h3{font-size:.85rem}
+  .mcard{padding:8px;gap:6px;font-size:.85rem;line-height:1.25;margin-bottom:8px}.mcard span:first-child{font-size:1.2rem!important}
+  .mt{padding:8px;min-height:64px;margin-bottom:8px;font-size:.88rem}.mt small{font-size:.75rem}
+  .mghost{width:150px}
+}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero{padding-top:104px}.b7,.b5{grid-column:span 12}}
+@media (max-width:560px){nav .logo{display:none}nav{padding:6px}nav ul{width:100%;justify-content:space-between}nav a.l{padding:7px 10px;font-size:.85rem}.sec{padding:52px 0}}
+@media (max-width:760px){
+  .hero .wrap,.about{grid-template-columns:1fr}
+  .avatar{max-width:220px;font-size:5rem;order:-1}
+  #start .txt,#mig .txt{display:none} #start,#mig{padding:12px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#about">Skip to content</a>
+<div id="prog"></div><div id="glow"></div>
+<nav aria-label="Main">
+  <a class="logo" href="#top">☁️ <span id="navName"><!--S:navName-->Naval Mohanraj<!--E:navName--></span></a>
+  <ul>
+    <li><a class="l" href="#about">About</a></li>
+    <li><a class="l" href="#skills">Skills</a></li>
+    <li><a class="l" href="#projects">Projects</a></li>
+    <li><a class="l" href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <span class="cl" aria-hidden="true">☁️</span><span class="cl" aria-hidden="true">☁️</span><span class="cl" aria-hidden="true">☁️</span>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="chip">🎓 M.Sc IT · Cloud Computing</span>
+      <h1><span class="grad" id="name"><!--S:name-->Naval Mohanraj<!--E:name--></span></h1>
+      <p class="role">Future <b id="role">Cloud Solutions Architect</b><i class="caret" aria-hidden="true"></i></p>
+      <p id="tagline"><!--S:tagline-->Cloud computing student focused on cloud services and on-premises to cloud migration, on the path to becoming a cloud solutions architect.<!--E:tagline--></p>
+      <div class="btns">
+        <a class="btn" href="#projects">See my projects</a>
+        <a class="btn alt" href="#contact">Say hello</a>
+      </div>
+      <p class="hintpill">🕹️ Psst! Two secret games hide in the bottom corners 🚚</p>
+    </div>
+    <div class="orbit" aria-hidden="true">
+      <div class="ring"><span style="--i:0"><b>EC2</b></span><span style="--i:1"><b>S3</b></span><span style="--i:2"><b>RDS</b></span><span style="--i:3"><b>VPC</b></span><span style="--i:4"><b>λ</b></span></div>
+      <div class="core"><span>NM</span><small>cloud builder</small></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="sec" id="about"><div class="wrap">
+  <div class="sh"><h2>About me</h2></div>
+  <div class="bento">
+    <div class="b7 glass pad rv"><p id="story"><!--S:story-->I completed my B.Sc in Computer Science and I'm now a first-year M.Sc IT (Cloud Computing) student. My curiosity started with a simple question: where does an app actually live once you close it? Chasing that answer led me from writing Python scripts to launching my first EC2 instance.<!--E:story--></p><p id="story2"><!--S:story2-->My full focus is cloud services. I'm learning to master the IaaS, PaaS and SaaS models, migrating on-premises systems to the cloud, and managing client services on AWS. My goal is to become a cloud solutions architect who helps businesses run reliably in the cloud.<!--E:story2--></p></div>
+    <div class="b5 glass pad rv"><h3 class="mini">Quick facts</h3><ul class="facts" id="quick"><!--S:quick--><li>🎓 B.Sc Computer Science (completed)</li><li>☁️ M.Sc IT (Cloud Computing), 1st year</li><li>💪 Strongest in: AWS, Python, Linux</li><li>🧭 Focus: cloud services and migration</li><li>🏏 Off screen: outdoor games</li><li>🎯 Aiming to be: a cloud solutions architect</li><!--E:quick--></ul></div>
+    <div class="b12 stats" id="stats"><!--S:stats--><div class="stat glass rv"><b>4</b>projects built</div><div class="stat glass rv"><b>5th</b>rank among 22 hackathon teams</div><div class="stat glass rv"><b>B.Sc + M.Sc</b>Computer Science to Cloud</div><div class="stat glass rv"><b>11</b>tools in my toolkit</div><!--E:stats--></div>
+    <div class="b12"><h3 class="sub">What I bring to a team</h3><div class="bring" id="bring"><!--S:bring--><div class="glass rv"><h3>Cloud-first thinking</h3><p style="margin:0">I think about where and how an app will run on AWS, not just how it looks.</p></div><div class="glass rv"><h3>Cloud migration mindset</h3><p style="margin:0">I'm learning to plan how on-premises workloads move to AWS safely and cost-effectively.</p></div><div class="glass rv"><h3>AI in practice</h3><p style="margin:0">I connect vision and chat models to real user problems, like CivicFix and the NatureMedica chatbot.</p></div><div class="glass rv"><h3>Teamwork under pressure</h3><p style="margin:0">I built a working product with a 5-member team in 10 hours and ranked 5th among 22 teams.</p></div><!--E:bring--></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="skills"><div class="wrap">
+  <div class="sh"><h2>Tech superpowers</h2></div>
+  <div class="skills" id="skillGrid"><!--S:skillGrid--><div class="skill glass rv"><div class="em">☁️</div><h3>Cloud Computing</h3>
+    <div class="bar" role="img" aria-label="Cloud Computing confidence 85%"><i style="width:85%"></i></div></div><div class="skill glass rv"><div class="em">🟧</div><h3>AWS: S3 &amp; EC2</h3>
+    <div class="bar" role="img" aria-label="AWS: S3 &amp; EC2 confidence 80%"><i style="width:80%"></i></div></div><div class="skill glass rv"><div class="em">🐍</div><h3>Python</h3>
+    <div class="bar" role="img" aria-label="Python confidence 85%"><i style="width:85%"></i></div></div><div class="skill glass rv"><div class="em">🐧</div><h3>Linux (Ubuntu)</h3>
+    <div class="bar" role="img" aria-label="Linux (Ubuntu) confidence 80%"><i style="width:80%"></i></div></div><div class="skill glass rv"><div class="em">🔒</div><h3>AWS VPC &amp; RDS</h3>
+    <div class="bar" role="img" aria-label="AWS VPC &amp; RDS confidence 60%"><i style="width:60%"></i></div></div><div class="skill glass rv"><div class="em">📱</div><h3>React Native</h3>
+    <div class="bar" role="img" aria-label="React Native confidence 65%"><i style="width:65%"></i></div></div><div class="skill glass rv"><div class="em">🗄️</div><h3>MySQL &amp; MongoDB</h3>
+    <div class="bar" role="img" aria-label="MySQL &amp; MongoDB confidence 65%"><i style="width:65%"></i></div></div><div class="skill glass rv"><div class="em">🤖</div><h3>ML Algorithms</h3>
+    <div class="bar" role="img" aria-label="ML Algorithms confidence 55%"><i style="width:55%"></i></div></div><div class="skill glass rv"><div class="em">🧰</div><h3>Git &amp; GitHub</h3>
+    <div class="bar" role="img" aria-label="Git &amp; GitHub confidence 70%"><i style="width:70%"></i></div></div><div class="skill glass rv"><div class="em">🧮</div><h3>Data Structures &amp; Algorithms</h3>
+    <div class="bar" role="img" aria-label="Data Structures &amp; Algorithms confidence 75%"><i style="width:75%"></i></div></div><div class="skill glass rv"><div class="em">🌐</div><h3>HTML5 &amp; JavaScript</h3>
+    <div class="bar" role="img" aria-label="HTML5 &amp; JavaScript confidence 75%"><i style="width:75%"></i></div></div><!--E:skillGrid--></div>
+  <h3 class="sub" style="margin-top:36px">Currently exploring</h3>
+  <div class="now" id="now"><!--S:now--><span>AWS VPC networking</span><span>Amazon RDS</span><span>ML algorithms</span><span>DevOps</span><span>Deploying with CloudFront</span><!--E:now--></div>
+</div></section>
+
+<section class="sec" id="projects"><div class="wrap">
+  <div class="sh"><h2>Projects</h2></div>
+  <div class="projects" id="projGrid"><!--S:projGrid--><article class="proj glass rv"><h3>CivicFix: AI civic issue reporting</h3><p>Cross-platform mobile app (React Native, Expo, Supabase) for reporting and tracking civic issues. Groq Vision AI (LLaMA 3.2) identifies the issue category from a photo, and AI helps draft the complaint. Includes authentication, profiles, report management and dashboards.</p>
+  <a class="go" href="https://github.com/Navalcs/CivicFix" target="_blank" rel="noopener">View project</a>
+  <div class="tags"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">Supabase</span><span class="tag">Groq AI</span></div></article><article class="proj glass rv"><h3>This portfolio on AWS</h3><p>A static site with a secret arcade game, hosted on Amazon S3 and delivered over HTTPS by CloudFront. Built for the AWS Student Builder Challenge.</p>
+  <a class="go" href="https://github.com/Navalcs/portfolio" target="_blank" rel="noopener">View project</a>
+  <div class="tags"><span class="tag">S3</span><span class="tag">CloudFront</span><span class="tag">JavaScript</span></div></article><article class="proj glass rv"><h3>NatureMedica: Ayurvedic herbs platform</h3><p>Built with a team of 5 at the MVLU Hackathon, going from idea to working MVP in 10 hours, and we ranked 5th out of 22 participating teams. A web app that digitizes traditional Ayurvedic knowledge: an herbs chatbot for instant wellness suggestions, interactive 3D models of plants like Amla and Brahmi, and a searchable guide mapping illnesses to herbs and recovery tips.</p>
+  
+  <div class="tags"><span class="tag">5th place</span><span class="tag">Team of 5</span><span class="tag">AI Chatbot</span><span class="tag">3D Models</span><span class="tag">Web App</span></div></article><article class="proj glass rv"><h3>NavalDS: data structures visualizer</h3><p>This was my first project, built during my B.Sc in Computer Science. It is a web platform with 11 data structure and algorithm modules, including linked lists, stacks, queues, binary trees, graphs and hash tables. I implemented insertion, deletion, traversal, DFS, BFS and Huffman encoding and decoding, and used object-oriented programming with interactive visualizations to show how each operation works. It also includes a permutation-based solution to the Travelling Salesman Problem that finds the shortest route.</p>
+  <a class="go" href="https://github.com/Navalcs/NavalDS-DataStructure" target="_blank" rel="noopener">View project</a>
+  <div class="tags"><span class="tag">B.Sc Computer Science</span><span class="tag">HTML5</span><span class="tag">JavaScript</span><span class="tag">DSA</span><span class="tag">OOP</span></div></article><!--E:projGrid--></div>
+</div></section>
+</main>
+
+<footer id="contact"><div class="wrap">
+  <div class="cta glass rv">
+    <h2>Let's build in the cloud together ☁️</h2>
+    <p>Open to internships, collaborations and good ideas.</p>
+    <div class="links" id="links"><!--S:links--><a class="btn" href="https://github.com/Navalcs" target="_blank" rel="noopener">GitHub</a><a class="btn alt" href="https://linkedin.com/in/naval-mohanraj" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="mailto:navalmohanraj07@gmail.com" target="_blank" rel="noopener">Email</a><!--E:links--></div>
+  </div>
+  <small>© 2026 Naval Mohanraj · Hosted on AWS with S3 and CloudFront · Try the Cloud Arcade in the bottom corners! 🕹️ 🚚</small>
+</div></footer>
+
+<button id="totop" aria-label="Back to top">↑</button>
+
+<button id="mig" aria-label="Open the Migrate it puzzle game"><span class="joy">🚚</span><span class="txt">MIGRATE IT!</span></button>
+
+<div id="migrate" role="dialog" aria-modal="true" aria-label="Migrate it puzzle">
+  <div class="mbox">
+    <div class="mhead">
+      <div><h2>Migrate it! 🚚</h2><div>Move each on-premises component to the right AWS service. Drag it onto a target, or tap a component and then tap a target.</div></div>
+      <button class="btn" id="migClose" style="padding:6px 14px">Close</button>
+    </div>
+    <div class="mstat"><span>Moved: <span id="migDone">0</span>/6</span><span>Time: <span id="migTime">0</span>s</span><span>Wrong tries: <span id="migWrong">0</span></span></div>
+    <p id="migMsg" role="status">Pick a component to begin.</p>
+    <div class="mgrid">
+      <div><h3>On-premises (your data centre)</h3><div id="migSrc"></div></div>
+      <div><h3>AWS cloud</h3><div id="migDst"></div></div>
+    </div>
+    <div id="migWin"></div>
+  </div>
+</div>
+
+<button id="start" aria-label="Press start: open the secret arcade"><span class="joy">🕹️</span><span class="txt">PRESS START</span></button>
+
+<div id="arcade" role="dialog" aria-modal="true" aria-label="Secret arcade">
+  <div class="cab">
+    <div class="top"><span>SCORE <b id="score">0</b></span><span id="lvl">LEVEL 1: S3</span><span id="lives" aria-label="Lives">❤️❤️❤️</span></div>
+    <div class="top2"><button class="x" id="mute">SOUND: ON</button><button class="x" id="archBtn" hidden>ARCHITECTURE</button><button class="x" id="close">EXIT (ESC)</button></div>
+    <div class="stage">
+      <canvas id="cv" width="640" height="360"></canvas>
+      <div class="panel" id="arch" hidden>
+        <h3>ARCHITECTURE UNLOCKED</h3>
+        <svg viewBox="0 0 540 230" role="img" aria-label="Architecture: visitor to CloudFront to S3; visitor to API Gateway to Lambda to DynamoDB">
+          <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#38D5FF"/></marker></defs>
+          <g font-family="Fredoka,sans-serif" font-size="14" text-anchor="middle" fill="#12082B" stroke="#12082B" stroke-width="0">
+            <rect x="10" y="95" width="90" height="42" rx="8" fill="#FFE94A"/><text x="55" y="121">Visitor</text>
+            <rect x="150" y="25" width="110" height="42" rx="8" fill="#FF4FA3"/><text x="205" y="51">CloudFront</text>
+            <rect x="320" y="25" width="110" height="42" rx="8" fill="#2CFFB0"/><text x="375" y="51">S3 website</text>
+            <rect x="150" y="165" width="110" height="42" rx="8" fill="#FF4FA3"/><text x="205" y="191">API Gateway</text>
+            <rect x="300" y="165" width="90" height="42" rx="8" fill="#8B5CFF"/><text x="345" y="191" fill="#fff">Lambda</text>
+            <rect x="420" y="165" width="110" height="42" rx="8" fill="#38D5FF"/><text x="475" y="191">DynamoDB</text>
+          </g>
+          <g stroke="#38D5FF" stroke-width="2.5" fill="none" marker-end="url(#ah)">
+            <path d="M100 105 L148 55"/><path d="M262 46 L318 46"/>
+            <path d="M100 128 L148 178"/><path d="M262 186 L298 186"/><path d="M392 186 L418 186"/>
+          </g>
+          <g font-family="Fredoka,sans-serif" font-size="12" fill="#B9A8F0" text-anchor="middle">
+            <text x="290" y="90">pages and game</text><text x="340" y="150">leaderboard scores</text>
+          </g>
+        </svg>
+        <div>This very site: files from S3 behind CloudFront, scores through API Gateway, Lambda and DynamoDB.</div>
+        <button class="x" id="archClose" style="font-family:inherit;font-size:.6rem;background:#FF4FA3;color:#12082B;border:0;padding:8px 12px;cursor:pointer">CONTINUE PLAYING</button>
+      </div>
+      <div class="panel" id="over" hidden>
+        <h3>GAME OVER</h3>
+        <div>YOUR SCORE: <b id="overScore">0</b></div>
+        <label for="nick">Nickname for the Top Builders board</label>
+        <input id="nick" maxlength="12" autocomplete="off" placeholder="Your name">
+        <div><button class="x" id="sub" style="font-family:inherit;font-size:.6rem;background:#2CFFB0;color:#12082B;border:0;padding:8px 12px;cursor:pointer">SAVE SCORE</button>
+        <button class="x" id="again" style="font-family:inherit;font-size:.6rem;background:#FFE94A;color:#12082B;border:0;padding:8px 12px;cursor:pointer">PLAY AGAIN</button></div>
+        <div id="lbmsg" role="status"></div>
+        <h3>TOP BUILDERS</h3>
+        <ol id="board"></ol>
+      </div>
+    </div>
+    <p id="reveal">Catch ⭐ to unlock my story. Dodge 💥 downtime!</p>
+    <ol id="log"></ol>
+    <p class="hint">Move: mouse, finger, or arrow keys. Stars reveal facts about me. 💥 costs a life. Every 6 stars is a new level.</p>
+  </div>
+</div>
+
+<script>
+/* ============ EDIT YOUR CONTENT HERE ============ */
+const D = {
+  name: "Naval Mohanraj",
+  tagline: "Cloud computing student focused on cloud services and on-premises to cloud migration, on the path to becoming a cloud solutions architect.",
+  story: ["I completed my B.Sc in Computer Science and I'm now a first-year M.Sc IT (Cloud Computing) student. My curiosity started with a simple question: where does an app actually live once you close it? Chasing that answer led me from writing Python scripts to launching my first EC2 instance.",
+          "My full focus is cloud services. I'm learning to master the IaaS, PaaS and SaaS models, migrating on-premises systems to the cloud, and managing client services on AWS. My goal is to become a cloud solutions architect who helps businesses run reliably in the cloud."],
+  quick: ["🎓 B.Sc Computer Science (completed)", "☁️ M.Sc IT (Cloud Computing), 1st year", "💪 Strongest in: AWS, Python, Linux", "🧭 Focus: cloud services and migration", "🏏 Off screen: outdoor games", "🎯 Aiming to be: a cloud solutions architect"],
+  skills: [
+    {e:"☁️", n:"Cloud Computing", l:85}, {e:"🟧", n:"AWS: S3 & EC2", l:80}, {e:"🐍", n:"Python", l:85},
+    {e:"🐧", n:"Linux (Ubuntu)", l:80}, {e:"🔒", n:"AWS VPC & RDS", l:60}, {e:"📱", n:"React Native", l:65},
+    {e:"🗄️", n:"MySQL & MongoDB", l:65}, {e:"🤖", n:"ML Algorithms", l:55}, {e:"🧰", n:"Git & GitHub", l:70}, {e:"🧮", n:"Data Structures & Algorithms", l:75}, {e:"🌐", n:"HTML5 & JavaScript", l:75}
+  ],
+  projects: [
+    {t:"CivicFix: AI civic issue reporting", d:"Cross-platform mobile app (React Native, Expo, Supabase) for reporting and tracking civic issues. Groq Vision AI (LLaMA 3.2) identifies the issue category from a photo, and AI helps draft the complaint. Includes authentication, profiles, report management and dashboards.", tags:["React Native","Expo","Supabase","Groq AI"], url:"https://github.com/Navalcs/CivicFix"},
+    {t:"This portfolio on AWS", d:"A static site with a secret arcade game, hosted on Amazon S3 and delivered over HTTPS by CloudFront. Built for the AWS Student Builder Challenge.", tags:["S3","CloudFront","JavaScript"], url:"https://github.com/Navalcs/portfolio"},
+    {t:"NatureMedica: Ayurvedic herbs platform", d:"Built with a team of 5 at the MVLU Hackathon, going from idea to working MVP in 10 hours, and we ranked 5th out of 22 participating teams. A web app that digitizes traditional Ayurvedic knowledge: an herbs chatbot for instant wellness suggestions, interactive 3D models of plants like Amla and Brahmi, and a searchable guide mapping illnesses to herbs and recovery tips.", tags:["5th place","Team of 5","AI Chatbot","3D Models","Web App"], url:""},
+    {t:"NavalDS: data structures visualizer", d:"This was my first project, built during my B.Sc in Computer Science. It is a web platform with 11 data structure and algorithm modules, including linked lists, stacks, queues, binary trees, graphs and hash tables. I implemented insertion, deletion, traversal, DFS, BFS and Huffman encoding and decoding, and used object-oriented programming with interactive visualizations to show how each operation works. It also includes a permutation-based solution to the Travelling Salesman Problem that finds the shortest route.", tags:["B.Sc Computer Science","HTML5","JavaScript","DSA","OOP"], url:"https://github.com/Navalcs/NavalDS-DataStructure"}
+  ],
+  stats: [["4","projects built"],["5th","rank among 22 hackathon teams"],["B.Sc + M.Sc","Computer Science to Cloud"],["11","tools in my toolkit"]],
+  bring: [
+    ["Cloud-first thinking","I think about where and how an app will run on AWS, not just how it looks."],
+    ["Cloud migration mindset","I'm learning to plan how on-premises workloads move to AWS safely and cost-effectively."],
+    ["AI in practice","I connect vision and chat models to real user problems, like CivicFix and the NatureMedica chatbot."],
+    ["Teamwork under pressure","I built a working product with a 5-member team in 10 hours and ranked 5th among 22 teams."]
+  ],
+  exploring: ["AWS VPC networking","Amazon RDS","ML algorithms","DevOps","Deploying with CloudFront"],
+  links: [["GitHub","https://github.com/Navalcs"],["LinkedIn","https://linkedin.com/in/naval-mohanraj"],["Email","mailto:navalmohanraj07@gmail.com"]],
+  secrets: [
+    "MY SKILLS: AWS (S3, EC2, VPC, RDS), Linux, Python, MySQL and MongoDB.",
+    "MY CAREER INTEREST: Cloud solutions architecture, designing and migrating systems to the cloud.",
+    "MY ACHIEVEMENTS: Ranked 5th among 22 teams at the MVLU Hackathon, built in 10 hours.",
+    "MY GOALS: Become a cloud solutions architect who manages client services on AWS.",
+    "MY PROJECTS: CivicFix, NatureMedica, NavalDS and this portfolio.",
+    "CURRENTLY EXPLORING: IaaS, PaaS, SaaS, on-premises to cloud migration, VPC, RDS and DevOps."
+  ],
+  hidden: {t:"🔓 CivicFix: how the AI works", d:"Snap a photo of a pothole, a broken light or a garbage pile. The Groq Vision model (LLaMA 3.2) names the issue category, then drafts the complaint text so citizens can report in seconds instead of minutes.", tags:["Vision AI","Secret level"], url:"https://github.com/Navalcs/CivicFix"}
+};
+/* ================================================ */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function card(p, secret){
+  return `<article class="proj glass rv${secret?' secret':''}"><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p>
+  ${p.url?`<a class="go" href="${esc(p.url)}" target="_blank" rel="noopener">View project</a>`:""}
+  <div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div></article>`;
+}
+function render(){
+  document.title = D.name + " | Portfolio";
+  $("name").textContent = $("navName").textContent = D.name;
+  $("tagline").textContent = D.tagline;
+  $("story").textContent = D.story[0]; $("story2").textContent = D.story[1];
+  $("stats").innerHTML = D.stats.map(([n,l])=>`<div class="stat glass rv"><b>${esc(n)}</b>${esc(l)}</div>`).join("");
+  $("bring").innerHTML = D.bring.map(([t,d])=>`<div class="glass rv"><h3>${esc(t)}</h3><p style="margin:0">${esc(d)}</p></div>`).join("");
+  $("now").innerHTML = D.exploring.map(x=>`<span>${esc(x)}</span>`).join("");
+  $("quick").innerHTML = D.quick.map(q=>`<li>${esc(q)}</li>`).join("");
+  $("skillGrid").innerHTML = D.skills.map(s=>`<div class="skill glass rv"><div class="em">${s.e}</div><h3>${esc(s.n)}</h3>
+    <div class="bar" role="img" aria-label="${esc(s.n)} confidence ${s.l}%"><i style="width:${s.l}%"></i></div></div>`).join("");
+  $("projGrid").innerHTML = D.projects.map(p=>card(p)).join("");
+  $("links").innerHTML = D.links.map(([n,u],i)=>`<a class="btn${i%2?' alt':''}" href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join("");
+}
+render();
+
+/* ============ ARCADE ============ */
+const API_URL = ""; /* paste your API Gateway invoke URL here, e.g. https://abc123.execute-api.ap-south-1.amazonaws.com */
+const LEVELS=["S3","EC2","VPC","RDS","CloudFront","Lambda","DynamoDB","IAM"];
+const ov=$("arcade"), cv=$("cv"), cx=cv.getContext("2d");
+let running=false, paused=false, over=false, started=false, raf=0, score=0, found=0, lives=3, items=[], player={x:320,w:90,h:16}, keys={}, last=0, spawn=0, unlocked=false, archSeen=false, muted=false, ac=null, lastScore=0;
+
+function beep(f,d,type){
+  if(muted) return;
+  try{ ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+    const o=ac.createOscillator(), g=ac.createGain(); o.type=type||"square"; o.frequency.value=f; g.gain.value=.05;
+    o.connect(g); g.connect(ac.destination); o.start(); g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+d); o.stop(ac.currentTime+d);
+  }catch(e){}
+}
+const level=()=>1+Math.floor(score/6);
+function setLvl(){ $("lvl").textContent="LEVEL "+level()+": "+LEVELS[(level()-1)%LEVELS.length]; }
+function setLives(){ $("lives").textContent="❤️".repeat(Math.max(0,lives))+"🖤".repeat(Math.max(0,3-lives)); }
+function newGame(){
+  score=0; found=0; lives=3; items=[]; spawn=.5; over=false; paused=false; started=true;
+  $("score").textContent=0; $("log").innerHTML=""; $("reveal").textContent="Catch ⭐ to unlock my story. Dodge 💥 downtime!";
+  $("over").hidden=true; $("arch").hidden=true; setLvl(); setLives();
+}
+function openArcade(){
+  document.body.classList.add("arcade"); ov.classList.add("on");
+  if(!started) newGame();
+  if(!running){ running=true; last=performance.now(); raf=requestAnimationFrame(loop); }
+  $("close").focus();
+}
+function closeArcade(){
+  ov.classList.remove("on"); running=false; cancelAnimationFrame(raf);
+  document.body.classList.remove("arcade");
+}
+$("start").onclick=()=> ov.classList.contains("on") ? closeArcade() : openArcade();
+$("close").onclick=closeArcade;
+ov.addEventListener("click",e=>{ if(e.target===ov) closeArcade(); });
+$("mute").onclick=()=>{ muted=!muted; $("mute").textContent="SOUND: "+(muted?"OFF":"ON"); };
+$("again").onclick=newGame;
+$("archBtn").onclick=()=>{ $("arch").hidden=false; paused=true; };
+$("archClose").onclick=()=>{ $("arch").hidden=true; paused=false; };
+
+addEventListener("keydown",e=>{
+  const typing=e.target&&e.target.tagName==="INPUT";
+  if(e.key==="Escape" && ov.classList.contains("on")) closeArcade();
+  if(typing) return;
+  if(["ArrowLeft","ArrowRight"].includes(e.key) && ov.classList.contains("on")){ keys[e.key]=true; e.preventDefault(); }
+});
+addEventListener("keyup",e=>{ keys[e.key]=false; });
+/* Konami code also opens it */
+const kon=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"]; let ki=0;
+addEventListener("keydown",e=>{ if(e.target&&e.target.tagName==="INPUT") return; ki=(e.key===kon[ki])?ki+1:(e.key===kon[0]?1:0); if(ki===kon.length){ki=0; openArcade();} });
+
+function moveTo(clientX){
+  const r=cv.getBoundingClientRect(); player.x=Math.max(player.w/2,Math.min(cv.width-player.w/2,(clientX-r.left)/r.width*cv.width));
+}
+cv.addEventListener("mousemove",e=>moveTo(e.clientX));
+cv.addEventListener("touchmove",e=>{ moveTo(e.touches[0].clientX); e.preventDefault(); },{passive:false});
+cv.addEventListener("touchstart",e=>moveTo(e.touches[0].clientX),{passive:true});
+
+function reveal(){
+  const msg=D.secrets[found % D.secrets.length];
+  $("reveal").textContent=msg;
+  const li=document.createElement("li"); li.textContent=msg; $("log").prepend(li);
+  found++;
+  if(found>=D.secrets.length && !unlocked){
+    unlocked=true;
+    $("reveal").textContent=msg+"  HIDDEN PROJECT UNLOCKED in Projects!";
+    $("projGrid").insertAdjacentHTML("beforeend", card(D.hidden,true)); $("projGrid").lastElementChild.classList.add("in");
+  }
+  if(found>=D.secrets.length && !archSeen){
+    archSeen=true; $("archBtn").hidden=false; $("arch").hidden=false; paused=true; beep(1200,.25);
+  }
+}
+
+function gameOver(){
+  over=true; lastScore=score; beep(110,.5,"sawtooth");
+  $("overScore").textContent=score; $("lbmsg").textContent=""; $("sub").disabled=false;
+  try{ $("nick").value=localStorage.getItem("nick")||""; }catch(e){}
+  $("over").hidden=false; loadBoard();
+}
+async function loadBoard(){
+  const el=$("board");
+  if(!API_URL){ el.innerHTML="<li>Global board coming online soon.</li>"; return; }
+  try{
+    const r=await fetch(API_URL+"/scores"); const d=await r.json();
+    el.innerHTML=d.scores.map(x=>`<li>${esc(x.name)}: ${Number(x.score)}</li>`).join("")||"<li>No scores yet. Be the first!</li>";
+  }catch(e){ el.innerHTML="<li>Leaderboard unavailable right now.</li>"; }
+}
+$("sub").onclick=async()=>{
+  const name=$("nick").value.trim().replace(/[^\w ]/g,"").slice(0,12)||"Anon";
+  try{ localStorage.setItem("nick",name); }catch(e){}
+  if(!API_URL){ $("lbmsg").textContent="Leaderboard is not connected yet."; return; }
+  $("sub").disabled=true;
+  try{
+    const r=await fetch(API_URL+"/scores",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,score:lastScore})});
+    if(!r.ok) throw new Error("bad");
+    $("lbmsg").textContent="Score saved!";
+  }catch(e){ $("lbmsg").textContent="Could not save. Try again."; $("sub").disabled=false; return; }
+  loadBoard();
+};
+
+function update(dt){
+  if(keys.ArrowLeft) player.x-=400*dt; if(keys.ArrowRight) player.x+=400*dt;
+  player.x=Math.max(player.w/2,Math.min(cv.width-player.w/2,player.x));
+  const L=level(), sp=110+L*22; spawn-=dt;
+  if(spawn<=0){
+    items.push({x:30+Math.random()*(cv.width-60),y:-20,r:14,bad:Math.random()<Math.min(.4,.16+L*.04),v:sp+Math.random()*50});
+    spawn=Math.max(.35,.95-L*.06);
+  }
+  const py=cv.height-30;
+  for(const it of items){
+    it.y+=it.v*dt;
+    if(it.y+it.r>=py && it.y<py+player.h && Math.abs(it.x-player.x)<player.w/2+it.r*.6){
+      it.dead=true;
+      if(it.bad){
+        lives--; setLives(); beep(140,.25,"sawtooth"); $("reveal").textContent="DOWNTIME! You lost a life.";
+        if(lives<=0){ gameOver(); return; }
+      } else {
+        const before=level(); score++; $("score").textContent=score; beep(880,.1); reveal();
+        if(level()>before){ setLvl(); beep(1320,.2); }
+      }
+    } else if(it.y>cv.height+20) it.dead=true;
+  }
+  items=items.filter(i=>!i.dead);
+}
+function loop(t){
+  if(!running) return;
+  const dt=Math.min(.05,(t-last)/1000); last=t;
+  if(!paused && !over) update(dt);
+  draw(t);
+  raf=requestAnimationFrame(loop);
+}
+function draw(t){
+  cx.fillStyle="#0A0420"; cx.fillRect(0,0,cv.width,cv.height);
+  cx.fillStyle="#fff";
+  for(let i=0;i<40;i++){ cx.globalAlpha=.25+.25*Math.sin(t/500+i); cx.fillRect((i*97)%cv.width,(i*53)%cv.height,2,2); }
+  cx.globalAlpha=1; cx.font="26px serif"; cx.textAlign="center"; cx.textBaseline="middle";
+  for(const it of items) cx.fillText(it.bad?"💥":"⭐",it.x,it.y);
+  const py=cv.height-30;
+  cx.fillStyle="#2CFFB0"; cx.fillRect(player.x-player.w/2,py,player.w,player.h);
+  cx.fillStyle="#FF4FA3"; cx.fillRect(player.x-player.w/2,py+player.h-4,player.w,4);
+}
+
+/* ============ MIGRATE IT PUZZLE ============ */
+const MT=[
+  {id:"ec2",name:"Amazon EC2",desc:"Virtual servers you rent by the second"},
+  {id:"rds",name:"Amazon RDS",desc:"Managed relational databases"},
+  {id:"s3",name:"Amazon S3",desc:"Object storage for files and backups"},
+  {id:"glacier",name:"S3 Glacier",desc:"Very cheap long-term archive storage"},
+  {id:"elb",name:"Elastic Load Balancing",desc:"Spreads traffic across servers"},
+  {id:"vpc",name:"Amazon VPC",desc:"Your private network and firewall rules in AWS"}
+];
+const MI=[
+  {id:"i1",icon:"🖥️",label:"Web server running Apache",t:"ec2",hint:"It needs a virtual machine to run code."},
+  {id:"i2",icon:"🛢️",label:"MySQL database server",t:"rds",hint:"A managed relational database fits best."},
+  {id:"i3",icon:"🗄️",label:"File server with shared documents",t:"s3",hint:"Think object storage for everyday files."},
+  {id:"i4",icon:"📼",label:"Tape backups kept for 7 years",t:"glacier",hint:"Rarely read, kept long term, so cheap archive storage."},
+  {id:"i5",icon:"⚖️",label:"Hardware load balancer",t:"elb",hint:"It spreads incoming traffic across servers."},
+  {id:"i6",icon:"🔥",label:"Office network and firewall",t:"vpc",hint:"A private network with security rules."}
+];
+const mg=$("migrate"); let mPlaced=0, mWrong=0, mT0=0, mTimer=0, mSel=null, mDrag=null;
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const mMsg=t=>{$("migMsg").textContent=t;};
+
+function migReset(){
+  mPlaced=0; mWrong=0; mSel=null; clearInterval(mTimer); mT0=Date.now();
+  $("migDone").textContent=0; $("migWrong").textContent=0; $("migTime").textContent=0; $("migWin").style.display="none";
+  $("migSrc").innerHTML=shuffle(MI).map(i=>`<div class="mcard" data-id="${i.id}" tabindex="0"><span style="font-size:1.5rem">${i.icon}</span><span>${esc(i.label)}</span></div>`).join("");
+  $("migDst").innerHTML=shuffle(MT).map(t=>`<div class="mt" data-t="${t.id}"><b>${esc(t.name)}</b><small>${esc(t.desc)}</small><div class="slot"></div></div>`).join("");
+  mMsg("Pick a component to begin.");
+  mTimer=setInterval(()=>{ $("migTime").textContent=Math.floor((Date.now()-mT0)/1000); },500);
+}
+function migAttempt(card,tEl){
+  const item=MI.find(i=>i.id===card.dataset.id), tgt=MT.find(t=>t.id===tEl.dataset.t);
+  if(!item||!tgt||tEl.classList.contains("ok")) return;
+  if(item.t===tgt.id){
+    tEl.classList.add("ok"); tEl.querySelector(".slot").textContent=item.icon+" "+item.label+" moved!";
+    card.classList.add("done"); mPlaced++; $("migDone").textContent=mPlaced; mSel=null;
+    mMsg("Correct! "+item.label+" belongs on "+tgt.name+".");
+    try{ beep(880,.1); }catch(e){}
+    if(mPlaced===MI.length) migWin();
+  } else {
+    mWrong++; $("migWrong").textContent=mWrong; tEl.classList.remove("no"); void tEl.offsetWidth; tEl.classList.add("no");
+    mMsg("Not quite. "+item.hint);
+    try{ beep(140,.2,"sawtooth"); }catch(e){}
+  }
+}
+function migWin(){
+  clearInterval(mTimer); const sec=Math.floor((Date.now()-mT0)/1000);
+  const w=$("migWin"); w.style.display="block";
+  w.innerHTML="<b>Migration complete!</b> You moved all 6 components in "+sec+"s with "+mWrong+" wrong "+(mWrong===1?"try":"tries")+". Mapping on-premises workloads to the right AWS services is the heart of cloud migration, and it's exactly what I'm learning to do for clients. <br><br><button class='btn alt' id='migAgain'>Play again</button>";
+  $("migAgain").onclick=migReset; try{ beep(1320,.3); }catch(e){}
+}
+function migCancel(){
+  document.removeEventListener("pointermove",migMove); document.removeEventListener("pointerup",migUp); document.removeEventListener("pointercancel",migCancel);
+  if(mDrag){ cancelAnimationFrame(mDrag.raf); if(mDrag.ghost) mDrag.ghost.remove(); mDrag=null; }
+  document.querySelectorAll(".mt.hot").forEach(x=>x.classList.remove("hot"));
+}
+function migTargetAt(x,y){ const el=document.elementFromPoint(x,y); return el&&el.closest?el.closest(".mt"):null; }
+function migAuto(){
+  if(!mDrag||!mDrag.moved) return;
+  const box=mg.querySelector(".mbox"), r=box.getBoundingClientRect(), zone=90, y=mDrag.y;
+  let dy=0;
+  if(y<r.top+zone) dy=-Math.min(22,Math.max(4,(r.top+zone-y)/3));
+  else if(y>r.bottom-zone) dy=Math.min(22,Math.max(4,(y-(r.bottom-zone))/3));
+  if(dy){
+    box.scrollTop+=dy;
+    document.querySelectorAll(".mt.hot").forEach(x=>x.classList.remove("hot"));
+    const t=migTargetAt(mDrag.x,mDrag.y); if(t&&!t.classList.contains("ok")) t.classList.add("hot");
+  }
+  mDrag.raf=requestAnimationFrame(migAuto);
+}
+function migMove(e){
+  if(!mDrag) return;
+  mDrag.x=e.clientX; mDrag.y=e.clientY;
+  if(!mDrag.moved && Math.hypot(e.clientX-mDrag.sx,e.clientY-mDrag.sy)>6){
+    mDrag.moved=true; const g=mDrag.card.cloneNode(true); g.className="mcard mghost"; document.body.appendChild(g); mDrag.ghost=g; mDrag.raf=requestAnimationFrame(migAuto);
+  }
+  if(mDrag.moved){
+    mDrag.ghost.style.left=(e.clientX-100)+"px"; mDrag.ghost.style.top=(e.clientY-24)+"px";
+    document.querySelectorAll(".mt.hot").forEach(x=>x.classList.remove("hot"));
+    const t=migTargetAt(e.clientX,e.clientY); if(t&&!t.classList.contains("ok")) t.classList.add("hot");
+  }
+}
+function migUp(e){
+  document.removeEventListener("pointermove",migMove); document.removeEventListener("pointerup",migUp); document.removeEventListener("pointercancel",migCancel);
+  if(!mDrag) return; const d=mDrag; mDrag=null; cancelAnimationFrame(d.raf);
+  document.querySelectorAll(".mt.hot").forEach(x=>x.classList.remove("hot"));
+  if(d.moved){
+    d.ghost.remove(); const t=migTargetAt(e.clientX,e.clientY); if(t) migAttempt(d.card,t);
+  } else {
+    document.querySelectorAll(".mcard.sel").forEach(x=>x.classList.remove("sel"));
+    if(mSel===d.card){ mSel=null; } else { mSel=d.card; d.card.classList.add("sel"); mMsg("Selected: "+d.card.textContent.trim()+". Now tap the matching AWS service."); }
+  }
+}
+$("migSrc").addEventListener("pointerdown",e=>{
+  const c=e.target.closest(".mcard"); if(!c||c.classList.contains("done")) return;
+  mDrag={card:c,sx:e.clientX,sy:e.clientY,x:e.clientX,y:e.clientY,moved:false,ghost:null,raf:0};
+  document.addEventListener("pointermove",migMove); document.addEventListener("pointerup",migUp); document.addEventListener("pointercancel",migCancel);
+});
+$("migSrc").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("mcard")){ e.preventDefault(); document.querySelectorAll(".mcard.sel").forEach(x=>x.classList.remove("sel")); mSel=e.target; e.target.classList.add("sel"); mMsg("Selected. Now choose the matching AWS service."); }});
+$("migDst").addEventListener("click",e=>{
+  const t=e.target.closest(".mt"); if(!t||!mSel) return;
+  const c=mSel; document.querySelectorAll(".mcard.sel").forEach(x=>x.classList.remove("sel")); mSel=null; migAttempt(c,t);
+});
+function openMig(){ if(ov.classList.contains("on")) closeArcade(); mg.classList.add("on"); if(!mT0) migReset(); $("migClose").focus(); }
+function closeMig(){ migCancel(); mg.classList.remove("on"); }
+$("mig").onclick=()=> mg.classList.contains("on")?closeMig():openMig();
+$("migClose").onclick=closeMig;
+mg.addEventListener("click",e=>{ if(e.target===mg) closeMig(); });
+addEventListener("keydown",e=>{ if(e.key==="Escape"&&mg.classList.contains("on")) closeMig(); });
+
+/* ============ UI POLISH ============ */
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); if(e.target.classList.contains("stat")) countUp(e.target.querySelector("b")); } }),{threshold:.12}):null;
+document.querySelectorAll(".rv").forEach(el=>io?io.observe(el):el.classList.add("in"));
+function countUp(el){
+  const t=el.textContent.trim(); if(!/^\d+$/.test(t)||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const n=+t; let st=null;
+  const step=ts=>{ st=st||ts; const p=Math.min(1,(ts-st)/900); el.textContent=Math.round(n*p); if(p<1) requestAnimationFrame(step); else el.textContent=t; };
+  requestAnimationFrame(step);
+}
+document.querySelectorAll(".skills,.projects,.bring,.stats,.facts").forEach(g=>[...g.children].forEach((c,i)=>c.style.setProperty("--d",(i%6)*.08+"s")));
+const calm=matchMedia("(prefers-reduced-motion: reduce)").matches, canHover=matchMedia("(hover:hover)").matches;
+if(canHover){
+  document.addEventListener("pointermove",e=>{
+    const t=e.target; if(!t.closest) return;
+    const g=t.closest(".glass");
+    if(g){
+      const r=g.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+      g.style.setProperty("--mx",x+"px"); g.style.setProperty("--my",y+"px");
+      if(!calm&&g.classList.contains("proj")){ g.style.setProperty("--ry",((x/r.width-.5)*8)+"deg"); g.style.setProperty("--rx",(-(y/r.height-.5)*8)+"deg"); }
+    }
+    const b=t.closest(".btn");
+    if(b&&!calm){ const r=b.getBoundingClientRect(); b.style.setProperty("--tx",((e.clientX-r.left-r.width/2)*.18)+"px"); b.style.setProperty("--ty",((e.clientY-r.top-r.height/2)*.28)+"px"); }
+  },{passive:true});
+  document.addEventListener("pointerout",e=>{
+    const t=e.target; if(!t.closest) return;
+    const p=t.closest(".proj"); if(p&&!p.contains(e.relatedTarget)){ p.style.setProperty("--rx","0deg"); p.style.setProperty("--ry","0deg"); }
+    const b=t.closest(".btn"); if(b&&!b.contains(e.relatedTarget)){ b.style.setProperty("--tx","0px"); b.style.setProperty("--ty","0px"); }
+  });
+}
+$("totop").onclick=()=>scrollTo({top:0,behavior:calm?"auto":"smooth"});
+const secs=[...document.querySelectorAll("main section, footer")], navLinks=[...document.querySelectorAll("nav a.l")];
+function onScroll(){
+  const h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+  $("totop").classList.toggle("show",h.scrollTop>700);
+  $("prog").style.width=(max>0?h.scrollTop/max*100:0)+"%";
+  let cur=""; secs.forEach(x=>{ if(x.getBoundingClientRect().top<innerHeight*.4) cur=x.id; });
+  navLinks.forEach(a=>a.classList.toggle("act",a.getAttribute("href")==="#"+cur));
+}
+addEventListener("scroll",onScroll,{passive:true}); onScroll();
+const roles=["Cloud Solutions Architect","Cloud Migration Specialist","AWS Builder","Hackathon Top-5 Finisher"];
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
+  let ri=0,ci=0,del=false; const re=$("role");
+  (function tick(){
+    const w=roles[ri]; re.textContent=w.slice(0,ci);
+    if(!del&&ci<w.length){ ci++; setTimeout(tick,70); }
+    else if(!del){ del=true; setTimeout(tick,1500); }
+    else if(ci>0){ ci--; setTimeout(tick,35); }
+    else { del=false; ri=(ri+1)%roles.length; setTimeout(tick,250); }
+  })();
+}
+if(matchMedia("(hover:hover)").matches){
+  const g=$("glow"); addEventListener("pointermove",e=>{ g.style.left=e.clientX+"px"; g.style.top=e.clientY+"px"; },{passive:true});
+}
+</script>
+</body>
+</html>
