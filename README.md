@@ -6,7 +6,7 @@ The portfolio showcases my cloud computing journey, technical skills, projects, 
 
 ## 🌐 Live Website
 
-**Portfolio:** [View My Portfolio](d3njwbay4gsc7f.cloudfront.net)
+**Portfolio:** [View My Portfolio](https://d3njwbay4gsc7f.cloudfront.net/)
 
 **GitHub Repository:** [naval-portfolio](https://github.com/Navalcs/naval-portfolio)
 
