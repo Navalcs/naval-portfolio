@@ -46,7 +46,10 @@ a{color:inherit}
 .pad{padding:26px}
 #prog{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--pink),var(--lilac),var(--sky));z-index:70}
 #glow{position:fixed;left:-500px;top:-500px;width:460px;height:460px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(130,110,255,.22),transparent 65%);transform:translate(-50%,-50%);z-index:-1}
-@media (hover:none){#glow{display:none}}
+#glow{transition:opacity .45s}
+#glow.off{opacity:0}
+@media (hover:none){#glow{width:560px;height:560px;background:radial-gradient(circle,rgba(150,120,255,.4),rgba(255,140,190,.2) 45%,transparent 68%)}}
+
 
 /* nav */
 nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;width:min(900px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px 8px 20px;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow)}
@@ -179,6 +182,21 @@ body.arcade .facts li:hover{background:rgba(255,255,255,.14)}
 #totop{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);z-index:55;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--shadow);color:var(--ink);font-size:1.3rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
 #totop.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
 #totop:hover{background:var(--acc);color:#fff}
+.archmodal{position:fixed;inset:0;z-index:95;background:rgba(10,4,32,.93);display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow:auto;-webkit-overflow-scrolling:touch}
+.archmodal[hidden]{display:none}
+.archcard{width:min(880px,100%);margin:auto;background:#1E1040;color:#F4F0FF;border:3px solid #38D5FF;border-radius:18px;padding:24px 18px;text-align:center;box-shadow:0 0 34px rgba(56,213,255,.4);font-family:'Fredoka',sans-serif}
+.archcard h3{font-family:'Press Start 2P',monospace;color:#FFE94A;font-size:.85rem;line-height:1.6;margin:0 0 8px}
+.archsub{color:#B9A8F0;margin:0 0 20px;font-size:1.1rem}
+.flow{display:flex;align-items:stretch;justify-content:center;gap:10px}
+.node{flex:1;display:flex;flex-direction:column;gap:6px;padding:16px 12px;background:#2A1760;border:2px solid #8B5CFF;border-radius:16px}
+.node span{font-size:2.4rem;line-height:1}
+.node b{font-size:1.2rem;color:#2CFFB0}
+.node small{font-size:1rem;line-height:1.4;color:#E6DEFF}
+.arrow{align-self:center;font-size:2rem;color:#38D5FF;font-weight:700}
+.archnote{margin:20px 0;font-size:1.02rem;line-height:1.5;color:#E6DEFF}
+.archbtn{font-family:'Press Start 2P',monospace;font-size:.7rem;background:#FF4FA3;color:#12082B;border:0;padding:14px 20px;cursor:pointer;border-radius:6px}
+.archbtn:hover{background:#FFE94A}
+@media (max-width:700px){.flow{flex-direction:column}.arrow{transform:rotate(90deg);line-height:1}}
 /* secret button hint */
 #start{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:3px solid var(--ink);background:var(--butter);color:#3B2F5C;font-family:'Press Start 2P',monospace;font-size:.62rem;cursor:pointer;box-shadow:4px 4px 0 var(--ink);animation:pulse 1.8s ease-in-out infinite}
 #start span.joy{font-size:1.4rem}
@@ -206,7 +224,6 @@ canvas{width:100%;height:auto;display:block;background:#0A0420;border:3px solid 
 .panel input{font-family:'Fredoka',sans-serif;font-size:1rem;padding:6px 10px;border:3px solid #38D5FF;background:#12082B;color:#fff;width:11em;text-align:center}
 .panel ol{font-family:'Fredoka',sans-serif;font-size:.95rem;text-align:left;margin:0;padding-left:26px;color:#fff;line-height:1.35}
 .panel svg{width:100%;max-height:230px}
-#lbmsg{color:#2CFFB0;min-height:1.2em}
 /* migrate it */
 #mig{position:fixed;left:18px;bottom:18px;z-index:60;display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:3px solid var(--ink);background:var(--mint);color:#3B2F5C;font-family:'Press Start 2P',monospace;font-size:.62rem;cursor:pointer;box-shadow:4px 4px 0 var(--ink);animation:pulse 1.8s ease-in-out infinite .6s}
 #mig .joy{font-size:1.4rem}
@@ -249,7 +266,7 @@ body.arcade .mbox h2{font-size:.9rem}
   .avatar{max-width:220px;font-size:5rem;order:-1}
   #start .txt,#mig .txt{display:none} #start,#mig{padding:12px}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}html.js .rv.in{animation:none}.cl{animation-duration:160s}.ring,.ring span b{animation-duration:90s}.grad,.hintpill{animation:none}}
 </style>
 </head>
 <body>
@@ -281,7 +298,7 @@ body.arcade .mbox h2{font-size:.9rem}
       <p class="hintpill">🕹️ Psst! Two secret games hide in the bottom corners 🚚</p>
     </div>
     <div class="orbit" aria-hidden="true">
-      <div class="ring"><span style="--i:0"><b>EC2</b></span><span style="--i:1"><b>S3</b></span><span style="--i:2"><b>RDS</b></span><span style="--i:3"><b>VPC</b></span><span style="--i:4"><b>λ</b></span></div>
+      <div class="ring"><span style="--i:0"><b>EC2</b></span><span style="--i:1"><b>S3</b></span><span style="--i:2"><b>RDS</b></span><span style="--i:3"><b>VPC</b></span><span style="--i:4"><b>CF</b></span></div>
       <div class="core"><span>NM</span><small>cloud builder</small></div>
     </div>
   </div>
@@ -321,7 +338,7 @@ body.arcade .mbox h2{font-size:.9rem}
   <div class="projects" id="projGrid"><!--S:projGrid--><article class="proj glass rv"><h3>CivicFix: AI civic issue reporting</h3><p>Cross-platform mobile app (React Native, Expo, Supabase) for reporting and tracking civic issues. Groq Vision AI (LLaMA 3.2) identifies the issue category from a photo, and AI helps draft the complaint. Includes authentication, profiles, report management and dashboards.</p>
   <a class="go" href="https://github.com/Navalcs/CivicFix" target="_blank" rel="noopener">View project</a>
   <div class="tags"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">Supabase</span><span class="tag">Groq AI</span></div></article><article class="proj glass rv"><h3>This portfolio on AWS</h3><p>A static site with a secret arcade game, hosted on Amazon S3 and delivered over HTTPS by CloudFront. Built for the AWS Student Builder Challenge.</p>
-  <a class="go" href="https://github.com/Navalcs/portfolio" target="_blank" rel="noopener">View project</a>
+  <a class="go" href="https://github.com/Navalcs/naval-portfolio" target="_blank" rel="noopener">View project</a>
   <div class="tags"><span class="tag">S3</span><span class="tag">CloudFront</span><span class="tag">JavaScript</span></div></article><article class="proj glass rv"><h3>NatureMedica: Ayurvedic herbs platform</h3><p>Built with a team of 5 at the MVLU Hackathon, going from idea to working MVP in 10 hours, and we ranked 5th out of 22 participating teams. A web app that digitizes traditional Ayurvedic knowledge: an herbs chatbot for instant wellness suggestions, interactive 3D models of plants like Amla and Brahmi, and a searchable guide mapping illnesses to herbs and recovery tips.</p>
   
   <div class="tags"><span class="tag">5th place</span><span class="tag">Team of 5</span><span class="tag">AI Chatbot</span><span class="tag">3D Models</span><span class="tag">Web App</span></div></article><article class="proj glass rv"><h3>NavalDS: data structures visualizer</h3><p>This was my first project, built during my B.Sc in Computer Science. It is a web platform with 11 data structure and algorithm modules, including linked lists, stacks, queues, binary trees, graphs and hash tables. I implemented insertion, deletion, traversal, DFS, BFS and Huffman encoding and decoding, and used object-oriented programming with interactive visualizations to show how each operation works. It also includes a permutation-based solution to the Travelling Salesman Problem that finds the shortest route.</p>
@@ -367,44 +384,32 @@ body.arcade .mbox h2{font-size:.9rem}
     <div class="top2"><button class="x" id="mute">SOUND: ON</button><button class="x" id="archBtn" hidden>ARCHITECTURE</button><button class="x" id="close">EXIT (ESC)</button></div>
     <div class="stage">
       <canvas id="cv" width="640" height="360"></canvas>
-      <div class="panel" id="arch" hidden>
-        <h3>ARCHITECTURE UNLOCKED</h3>
-        <svg viewBox="0 0 540 230" role="img" aria-label="Architecture: visitor to CloudFront to S3; visitor to API Gateway to Lambda to DynamoDB">
-          <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#38D5FF"/></marker></defs>
-          <g font-family="Fredoka,sans-serif" font-size="14" text-anchor="middle" fill="#12082B" stroke="#12082B" stroke-width="0">
-            <rect x="10" y="95" width="90" height="42" rx="8" fill="#FFE94A"/><text x="55" y="121">Visitor</text>
-            <rect x="150" y="25" width="110" height="42" rx="8" fill="#FF4FA3"/><text x="205" y="51">CloudFront</text>
-            <rect x="320" y="25" width="110" height="42" rx="8" fill="#2CFFB0"/><text x="375" y="51">S3 website</text>
-            <rect x="150" y="165" width="110" height="42" rx="8" fill="#FF4FA3"/><text x="205" y="191">API Gateway</text>
-            <rect x="300" y="165" width="90" height="42" rx="8" fill="#8B5CFF"/><text x="345" y="191" fill="#fff">Lambda</text>
-            <rect x="420" y="165" width="110" height="42" rx="8" fill="#38D5FF"/><text x="475" y="191">DynamoDB</text>
-          </g>
-          <g stroke="#38D5FF" stroke-width="2.5" fill="none" marker-end="url(#ah)">
-            <path d="M100 105 L148 55"/><path d="M262 46 L318 46"/>
-            <path d="M100 128 L148 178"/><path d="M262 186 L298 186"/><path d="M392 186 L418 186"/>
-          </g>
-          <g font-family="Fredoka,sans-serif" font-size="12" fill="#B9A8F0" text-anchor="middle">
-            <text x="290" y="90">pages and game</text><text x="340" y="150">leaderboard scores</text>
-          </g>
-        </svg>
-        <div>This very site: files from S3 behind CloudFront, scores through API Gateway, Lambda and DynamoDB.</div>
-        <button class="x" id="archClose" style="font-family:inherit;font-size:.6rem;background:#FF4FA3;color:#12082B;border:0;padding:8px 12px;cursor:pointer">CONTINUE PLAYING</button>
-      </div>
       <div class="panel" id="over" hidden>
         <h3>GAME OVER</h3>
         <div>YOUR SCORE: <b id="overScore">0</b></div>
-        <label for="nick">Nickname for the Top Builders board</label>
-        <input id="nick" maxlength="12" autocomplete="off" placeholder="Your name">
-        <div><button class="x" id="sub" style="font-family:inherit;font-size:.6rem;background:#2CFFB0;color:#12082B;border:0;padding:8px 12px;cursor:pointer">SAVE SCORE</button>
-        <button class="x" id="again" style="font-family:inherit;font-size:.6rem;background:#FFE94A;color:#12082B;border:0;padding:8px 12px;cursor:pointer">PLAY AGAIN</button></div>
-        <div id="lbmsg" role="status"></div>
-        <h3>TOP BUILDERS</h3>
-        <ol id="board"></ol>
+        <div>BEST SCORE: <b id="best">0</b></div>
+        <div>LEVEL REACHED: <b id="overLvl">1</b></div>
+        <button class="x" id="again" style="font-family:inherit;font-size:.7rem;background:#FFE94A;color:#12082B;border:0;padding:12px 18px;cursor:pointer">PLAY AGAIN</button>
       </div>
     </div>
     <p id="reveal">Catch ⭐ to unlock my story. Dodge 💥 downtime!</p>
     <ol id="log"></ol>
     <p class="hint">Move: mouse, finger, or arrow keys. Stars reveal facts about me. 💥 costs a life. Every 6 stars is a new level.</p>
+  </div>
+  <div id="arch" class="archmodal" hidden role="dialog" aria-modal="true" aria-label="How this site is hosted on AWS">
+    <div class="archcard">
+      <h3>ARCHITECTURE UNLOCKED</h3>
+      <p class="archsub">How this portfolio is hosted on AWS</p>
+      <div class="flow">
+        <div class="node"><span>🧑‍💻</span><b>Visitor</b><small>Any device, any browser</small></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node"><span>🌍</span><b>Amazon CloudFront</b><small>Global CDN that serves the site over HTTPS from the nearest edge location</small></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node"><span>🪣</span><b>Amazon S3</b><small>Storage bucket that holds the website files</small></div>
+      </div>
+      <p class="archnote">A static site on S3 and CloudFront means no servers to manage, HTTPS by default, and a bill of just a few cents.</p>
+      <button id="archClose" class="archbtn">CONTINUE PLAYING</button>
+    </div>
   </div>
 </div>
 
@@ -423,7 +428,7 @@ const D = {
   ],
   projects: [
     {t:"CivicFix: AI civic issue reporting", d:"Cross-platform mobile app (React Native, Expo, Supabase) for reporting and tracking civic issues. Groq Vision AI (LLaMA 3.2) identifies the issue category from a photo, and AI helps draft the complaint. Includes authentication, profiles, report management and dashboards.", tags:["React Native","Expo","Supabase","Groq AI"], url:"https://github.com/Navalcs/CivicFix"},
-    {t:"This portfolio on AWS", d:"A static site with a secret arcade game, hosted on Amazon S3 and delivered over HTTPS by CloudFront. Built for the AWS Student Builder Challenge.", tags:["S3","CloudFront","JavaScript"], url:"https://github.com/Navalcs/portfolio"},
+    {t:"This portfolio on AWS", d:"A static site with a secret arcade game, hosted on Amazon S3 and delivered over HTTPS by CloudFront. Built for the AWS Student Builder Challenge.", tags:["S3","CloudFront","JavaScript"], url:"https://github.com/Navalcs/naval-portfolio"},
     {t:"NatureMedica: Ayurvedic herbs platform", d:"Built with a team of 5 at the MVLU Hackathon, going from idea to working MVP in 10 hours, and we ranked 5th out of 22 participating teams. A web app that digitizes traditional Ayurvedic knowledge: an herbs chatbot for instant wellness suggestions, interactive 3D models of plants like Amla and Brahmi, and a searchable guide mapping illnesses to herbs and recovery tips.", tags:["5th place","Team of 5","AI Chatbot","3D Models","Web App"], url:""},
     {t:"NavalDS: data structures visualizer", d:"This was my first project, built during my B.Sc in Computer Science. It is a web platform with 11 data structure and algorithm modules, including linked lists, stacks, queues, binary trees, graphs and hash tables. I implemented insertion, deletion, traversal, DFS, BFS and Huffman encoding and decoding, and used object-oriented programming with interactive visualizations to show how each operation works. It also includes a permutation-based solution to the Travelling Salesman Problem that finds the shortest route.", tags:["B.Sc Computer Science","HTML5","JavaScript","DSA","OOP"], url:"https://github.com/Navalcs/NavalDS-DataStructure"}
   ],
@@ -473,8 +478,7 @@ function render(){
 render();
 
 /* ============ ARCADE ============ */
-const API_URL = ""; /* paste your API Gateway invoke URL here, e.g. https://abc123.execute-api.ap-south-1.amazonaws.com */
-const LEVELS=["S3","EC2","VPC","RDS","CloudFront","Lambda","DynamoDB","IAM"];
+const LEVELS=["S3","EC2","VPC","RDS","CloudFront","IAM","EBS","ELB"];
 const ov=$("arcade"), cv=$("cv"), cx=cv.getContext("2d");
 let running=false, paused=false, over=false, started=false, raf=0, score=0, found=0, lives=3, items=[], player={x:320,w:90,h:16}, keys={}, last=0, spawn=0, unlocked=false, archSeen=false, muted=false, ac=null, lastScore=0;
 
@@ -508,7 +512,7 @@ $("close").onclick=closeArcade;
 ov.addEventListener("click",e=>{ if(e.target===ov) closeArcade(); });
 $("mute").onclick=()=>{ muted=!muted; $("mute").textContent="SOUND: "+(muted?"OFF":"ON"); };
 $("again").onclick=newGame;
-$("archBtn").onclick=()=>{ $("arch").hidden=false; paused=true; };
+$("archBtn").onclick=()=>{ $("arch").hidden=false; paused=true; $("archClose").focus(); };
 $("archClose").onclick=()=>{ $("arch").hidden=true; paused=false; };
 
 addEventListener("keydown",e=>{
@@ -540,37 +544,16 @@ function reveal(){
     $("projGrid").insertAdjacentHTML("beforeend", card(D.hidden,true)); $("projGrid").lastElementChild.classList.add("in");
   }
   if(found>=D.secrets.length && !archSeen){
-    archSeen=true; $("archBtn").hidden=false; $("arch").hidden=false; paused=true; beep(1200,.25);
+    archSeen=true; $("archBtn").hidden=false; $("arch").hidden=false; paused=true; beep(1200,.25); $("archClose").focus();
   }
 }
 
 function gameOver(){
   over=true; lastScore=score; beep(110,.5,"sawtooth");
-  $("overScore").textContent=score; $("lbmsg").textContent=""; $("sub").disabled=false;
-  try{ $("nick").value=localStorage.getItem("nick")||""; }catch(e){}
-  $("over").hidden=false; loadBoard();
+  let best=score; try{ best=Math.max(score,+localStorage.getItem("best")||0); localStorage.setItem("best",best); }catch(e){}
+  $("overScore").textContent=score; $("best").textContent=best; $("overLvl").textContent=level()+" ("+LEVELS[(level()-1)%LEVELS.length]+")";
+  $("over").hidden=false; $("again").focus();
 }
-async function loadBoard(){
-  const el=$("board");
-  if(!API_URL){ el.innerHTML="<li>Global board coming online soon.</li>"; return; }
-  try{
-    const r=await fetch(API_URL+"/scores"); const d=await r.json();
-    el.innerHTML=d.scores.map(x=>`<li>${esc(x.name)}: ${Number(x.score)}</li>`).join("")||"<li>No scores yet. Be the first!</li>";
-  }catch(e){ el.innerHTML="<li>Leaderboard unavailable right now.</li>"; }
-}
-$("sub").onclick=async()=>{
-  const name=$("nick").value.trim().replace(/[^\w ]/g,"").slice(0,12)||"Anon";
-  try{ localStorage.setItem("nick",name); }catch(e){}
-  if(!API_URL){ $("lbmsg").textContent="Leaderboard is not connected yet."; return; }
-  $("sub").disabled=true;
-  try{
-    const r=await fetch(API_URL+"/scores",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,score:lastScore})});
-    if(!r.ok) throw new Error("bad");
-    $("lbmsg").textContent="Score saved!";
-  }catch(e){ $("lbmsg").textContent="Could not save. Try again."; $("sub").disabled=false; return; }
-  loadBoard();
-};
-
 function update(dt){
   if(keys.ArrowLeft) player.x-=400*dt; if(keys.ArrowRight) player.x+=400*dt;
   player.x=Math.max(player.w/2,Math.min(cv.width-player.w/2,player.x));
@@ -726,7 +709,7 @@ addEventListener("keydown",e=>{ if(e.key==="Escape"&&mg.classList.contains("on")
 const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); if(e.target.classList.contains("stat")) countUp(e.target.querySelector("b")); } }),{threshold:.12}):null;
 document.querySelectorAll(".rv").forEach(el=>io?io.observe(el):el.classList.add("in"));
 function countUp(el){
-  const t=el.textContent.trim(); if(!/^\d+$/.test(t)||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const t=el.textContent.trim(); if(!/^\d+$/.test(t)) return;
   const n=+t; let st=null;
   const step=ts=>{ st=st||ts; const p=Math.min(1,(ts-st)/900); el.textContent=Math.round(n*p); if(p<1) requestAnimationFrame(step); else el.textContent=t; };
   requestAnimationFrame(step);
@@ -761,8 +744,8 @@ function onScroll(){
   navLinks.forEach(a=>a.classList.toggle("act",a.getAttribute("href")==="#"+cur));
 }
 addEventListener("scroll",onScroll,{passive:true}); onScroll();
-const roles=["Cloud Solutions Architect","Cloud Migration Specialist","AWS Builder","Hackathon Top-5 Finisher"];
-if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
+const roles=["Cloud Solutions Architect","Cloud Migration Specialist","AWS Builder"];
+{
   let ri=0,ci=0,del=false; const re=$("role");
   (function tick(){
     const w=roles[ri]; re.textContent=w.slice(0,ci);
@@ -772,8 +755,17 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
     else { del=false; ri=(ri+1)%roles.length; setTimeout(tick,250); }
   })();
 }
-if(matchMedia("(hover:hover)").matches){
-  const g=$("glow"); addEventListener("pointermove",e=>{ g.style.left=e.clientX+"px"; g.style.top=e.clientY+"px"; },{passive:true});
+{
+  const g=$("glow"), place=(x,y)=>{ g.style.left=x+"px"; g.style.top=y+"px"; };
+  if(matchMedia("(hover:hover)").matches){
+    addEventListener("pointermove",e=>place(e.clientX,e.clientY),{passive:true});
+  } else {
+    g.classList.add("off");
+    addEventListener("touchstart",e=>{ const t=e.touches[0]; place(t.clientX,t.clientY); g.classList.remove("off"); },{passive:true});
+    addEventListener("touchmove",e=>{ const t=e.touches[0]; place(t.clientX,t.clientY); },{passive:true});
+    addEventListener("touchend",()=>setTimeout(()=>g.classList.add("off"),400),{passive:true});
+    addEventListener("touchcancel",()=>g.classList.add("off"),{passive:true});
+  }
 }
 </script>
 </body>
